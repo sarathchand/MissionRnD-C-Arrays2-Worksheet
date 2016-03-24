@@ -14,7 +14,40 @@ NOTES:
 There are better ways of solving the problem than a brute-force solution which is of O(n^2)
 complexity .
 */
+#include<stdlib.h>
  
 int findSingleOccurenceNumber(int *A, int len) {
-	return -1;
+	int *b, i, max = 0, p;
+	if (A != NULL)
+	{
+		for (i = 0; i < len; i++)
+		{
+			if (A[i]>max)
+			{
+				max = A[i];
+			}
+		}
+		b = (int*)malloc(sizeof(int)*max);
+		for (i = 0; i <= max; i++)
+		{
+			b[i] = 0;
+		}
+		for (i = 0; i < len; i++)
+		{
+			b[A[i]] = b[A[i]] + 1;
+		}
+		for (i = 0; i <= max; i++)
+		{
+			if (b[i] == 1)
+			{
+				return i;
+			}
+
+		}
+
+	}
+	else
+	{
+		return -1;
+	}
 }
